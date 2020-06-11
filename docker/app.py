@@ -48,7 +48,7 @@ def upload():
 
             #import DB
             import psycopg2
-            conn = psycopg2.connect(host='10.128.0.47', dbname='powercalcmaster', user='postgres', password='Passw0rd', port=5432)
+            conn = psycopg2.connect(host='xx.xxx.x.xx', dbname='powercalcmaster', user='postgres', password='xxxxxxx', port=5432)
 
             for i in range(0,x):
                 strCur = "SELECT * FROM master_tb where model_number = '" + DPE_list[i][0] + "';"
