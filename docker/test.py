@@ -3,6 +3,11 @@ import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+
 UPLOAD_FOLDER = r'/home/takeshi/test/uploads'
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','json'])
 ALLOWED_EXTENSIONS = set(['json'])
