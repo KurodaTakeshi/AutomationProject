@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = r'C:\Users\kurodt1\Desktop\temp\docker\uploads'
+UPLOAD_FOLDER = r'/home/takeshi/test/uploads'
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','json'])
 ALLOWED_EXTENSIONS = set(['json'])
 
@@ -56,7 +56,7 @@ def upload():
 
             #import DB
             import psycopg2
-            conn = psycopg2.connect(host='localhost', dbname='powercalcmaster', user='postgres', password='tak96tak', port=5432)
+            conn = psycopg2.connect(host='localhost', dbname='powercalcmaster', user='postgres', password='Passw0rd', port=5432)
             x = len(json_data["Structures"][0]["Bases"][0]["Modules"])
             x = x + 1
             for i in range(0,x):
@@ -115,4 +115,4 @@ def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=80)
+    app.run(debug=True, host='0.0.0.0', port=80)
