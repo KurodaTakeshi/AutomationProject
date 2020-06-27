@@ -8,7 +8,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-UPLOAD_FOLDER = r'/home/takeshi/test/uploads'
+UPLOAD_FOLDER = r'/home/takeshi/test/docker/uploads'
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','json'])
 ALLOWED_EXTENSIONS = set(['json'])
 
