@@ -3,9 +3,13 @@ import os
 import configparser
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 config = configparser.ConfigParser()
-config.read(r'C:\Users\kurodt1\Desktop\temp\docker\config.ini')
+config.read(r'/home/takeshi/test/config.ini')
 
 host = config['BASE']['host']
 dbhost = config['BASE']['dbhost']
@@ -13,13 +17,7 @@ dbname = config['BASE']['dbname']
 user = config['BASE']['user']
 password = config['BASE']['password']
 
-print(host)
-print(dbhost)
-print(dbname)
-print(user)
-print(password)
-
-UPLOAD_FOLDER = r'C:\Users\kurodt1\Desktop\temp\docker\uploads'
+UPLOAD_FOLDER = 'uploads'
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','json'])
 ALLOWED_EXTENSIONS = set(['json'])
 
@@ -152,5 +150,4 @@ def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == '__main__':
-    #app.run(debug=True, host='127.0.0.1', port=80)
     app.run(debug=True, host=host, port=80)
