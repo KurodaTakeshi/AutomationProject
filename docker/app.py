@@ -9,7 +9,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 config = configparser.ConfigParser()
-config.read(r'/home/takeshi/test/config.ini')
+config.read(r'/home/docker/ini/config.ini')
 
 host = config['BASE']['host']
 dbhost = config['BASE']['dbhost']
