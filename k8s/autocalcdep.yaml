@@ -34,7 +34,7 @@ items:
         - env:
           - name: master
             value: "true"
-          image: kurodta/autocalc
+          image: kurodta/autocalc2
           imagePullPolicy: Always
           name: autocalc
           ports:
