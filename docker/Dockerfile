@@ -1,5 +1,5 @@
 ﻿# Use an official Python runtime as a parent image
-FROM python:3
+FROM python:2
 
 # Set the working directory to /app
 WORKDIR /app
@@ -11,6 +11,7 @@ ADD . /app
 RUN pip uninstall psycopg2 psycopg2-binary
 RUN pip install psycopg2-binary
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install configparser
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

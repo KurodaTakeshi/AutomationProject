@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>sample1</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.2/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+
+    <!--Required scripts-->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- External files for exporting -->
+    <script src="https://jp.igniteui.com/js/external/FileSaver.js"></script>
+    <script src="https://jp.igniteui.com/js/external/Blob.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collections.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_text.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_io.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_ui.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_threading.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_web.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.xml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+</head>
+
+<link rel="stylesheet" type="text/css" href="/static/css/example.css">
+<h1>Created specifications from JSON file.</h1>
+<h2>Please click "Output Excel button"</h2>
+
+<table>
+ <tr>
+  <th>Model Nunber</th><th>Product</th><th>Component</th>
+  <th>PowerConsumption(W)</th>
+  <th>PowerConsumption(VA)</th>
+  <th>Heat dissipation(BTU/hr)</th>
+  <th>Heat dissipation(KJ/hr)</th>
+  <th>Width</th>
+  <th>Depth</th>
+  <th>Height</th>
+  <th>Height(U value)</th>
+  <th>Weight(kg)</th>
+  <th>100V　Current(A)</th>
+  <th>200V　Current(A)</th>
+  <th>Voltage(V)</th>
+  <th>Temperature(℃)</th>
+  <th>Humidity(%)noncondensing</th>
+  <th>Power cord Qty</th>
+  <th>Plug Type</th>
+  <th>Note</th>
+ </tr>
+ <tr>
+  {{html_DPE | safe}}
+ </tr>
+ <tr>
+  {{html_DAE | safe}}
+ </tr>
+</table>
+
+<body>
+    <button id="exportButton" onclick="createFormattingWorkbook()">Output Excel</button>
+    <br />
+    <script>
+        function createFormattingWorkbook() {
+            var Category = ["Model Nunber","Product","Component","PowerConsumption(W)","PowerConsumption(VA)","Heat dissipation(BTU/hr)","Heat dissipation(KJ/hr)","Width(cm)","Depth(cm)","Height(cm)","Height(U value)","Weight(kg)","100V　Current(A)","200V　Current(A)","Voltage(V)","Temperature(℃)","Humidity(%)noncondensing","Power cord Qty","Plug Type","Note"]
+            var DPE = {{Excel_DPE|tojson}};
+            var DAE = {{Excel_DAE|tojson}};
+            var x = Category.length;
+            var y = DPE.length;
+            var z = DAE.length;
+
+            var workbook = new $.ig.excel.Workbook($.ig.excel.WorkbookFormat.excel2007);
+            var sheet = workbook.worksheets().add('Sheet1');
+            
+            sheet.columns(0).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(1).setWidth(150, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(2).setWidth(150, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(3).setWidth(170, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(4).setWidth(170, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(5).setWidth(170, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(6).setWidth(170, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(7).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(8).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(9).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(10).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(11).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(12).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(13).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(14).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(15).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(16).setWidth(200, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(17).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(18).setWidth(130, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            sheet.columns(19).setWidth(600, $.ig.excel.WorksheetColumnWidthUnit.pixel);
+            
+            //Disclaimer
+            sheet.rows(0).cells(0).value('【Disclaimer】');
+            sheet.rows(1).cells(0).value('The following Value was created in accordance with DELLEMC of public information,  and please note that  blank part  is a Non-published.');
+            sheet.rows(2).cells(0).value('Value is being listed non-public specification sheet\'s value as a reference value, if it can be caluculated. The reference values are listed in blue.');
+            sheet.rows(3).cells(0).value('Listed value is the maximum configuration of the each unit. Standard value is listed with bold font.');
+            sheet.rows(4).cells(0).value('Note that the values based on Power Calculator may be different from one in specsheet or other guidance.');
+            sheet.rows(5).cells(0).value('With "TOTAL" column：Outer size[Width・Depth] of "TOTAL" column shows maximum value. Other value shows the total value.');
+            sheet.rows(6).cells(0).value('The listed Value dependence to the versions and configuration, so It may be different from the current spec.');
+            sheet.rows(7).cells(0).value('3 Phase power code\'s specification sheet is only provide Symmetrix. Please check the latest product\'s document for the other porducts.');
+            sheet.rows(8).cells(0).value('Gray collored cells indicates existing configuration.');
+            sheet.rows(9).cells(0).value('XtremIO Power Consupotion and heat dissipation is caluculated based on PowerCalculator.');
+            sheet.rows(10).cells(0).value('[Vxrail] Please be noticed that the Power EdgeR640/740/R740xd of specification sheet might be different from consumption power.');
+            sheet.rows(11).cells(0).value('[Isilon] Depth shows the length till front NEMA rail to rear 2.5” SSD cover ejector.The following values are calculated based on Power Calculator 3.0: Power consumption, Heat dissipation, (Electric) Current.');
+            sheet.rows(12).cells(0).value('[Symmetrix] With "TOTAL" column of VMAX：Outer size[Width・Depth] of "TOTAL" column shows maximum value. Other value shows the total value.');
+            sheet.rows(13).cells(0).value('[IDPA(Other than DP4400) With "TOTAL" column of IDPA(Other than 4400)：Outer size[Width・Depth] of "TOTAL" column shows maximum value. Other value shows the total value.');
+
+            for (let i = 0; i < 14; i++) {
+              sheet.rows(0).cells(0).cellFormat().font().bold(true);
+              for (let j = 0; j < x; j++) {
+              sheet.rows(i).cells(j).cellFormat().font().name('Arial');
+              sheet.rows(i).cells(j).cellFormat().fill($.ig.excel.CellFill.createSolidFill('#F5F5F5'));
+              }
+            }
+            for (let i = 0; i < 14; i++ ) {
+              sheet.rows(i).cells(0).cellFormat().leftBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(i).cells(x-1).cellFormat().rightBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+            }
+            for (let i = 0; i < x; i++ ) {
+              sheet.rows(0).cells(i).cellFormat().topBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(13).cells(i).cellFormat().bottomBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+            }
+
+            //Category
+            for (let i = 0; i < x; i++) {
+              sheet.rows(15).cells(i).value(Category[i]);
+              sheet.rows(15).cells(i).cellFormat().font().name('Arial');
+              sheet.rows(15).cells(i).cellFormat().font().colorInfo(new $.ig.excel.WorkbookColorInfo('#ffffff'));
+              sheet.rows(15).cells(i).cellFormat().alignment($.ig.excel.HorizontalCellAlignment.center);
+              sheet.rows(15).cells(i).cellFormat().leftBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(15).cells(i).cellFormat().rightBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(15).cells(i).cellFormat().topBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(15).cells(i).cellFormat().bottomBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(15).cells(i).cellFormat().fill($.ig.excel.CellFill.createSolidFill('#7B8075'));
+            }
+
+            //DPE
+            for (let i = 0; i < y; i++) {
+              sheet.rows(16).cells(i).value(DPE[i]);
+              sheet.rows(16).cells(i).cellFormat().font().name('Arial');
+              sheet.rows(16).cells(i).cellFormat().alignment($.ig.excel.HorizontalCellAlignment.center);
+              sheet.rows(16).cells(i).cellFormat().leftBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(16).cells(i).cellFormat().rightBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(16).cells(i).cellFormat().topBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(16).cells(i).cellFormat().bottomBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+            }
+            //DAE
+            for (let i = 0; i < z; i++) {
+              sheet.rows(17).cells(i).value(DAE[i]);
+              sheet.rows(17).cells(i).cellFormat().font().name('Arial');
+              sheet.rows(17).cells(i).cellFormat().alignment($.ig.excel.HorizontalCellAlignment.center);
+              sheet.rows(17).cells(i).cellFormat().leftBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(17).cells(i).cellFormat().rightBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(17).cells(i).cellFormat().topBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+              sheet.rows(17).cells(i).cellFormat().bottomBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+            }
+            
+            //caluculate
+            if (DAE[0]) {
+              for (let i = 0; i < x; i++) {
+                //sheet.rows(2).cells(i).value(DAE[i]);
+                sheet.rows(18).cells(i).cellFormat().font().name('Arial');
+                sheet.rows(18).cells(i).cellFormat().fill($.ig.excel.CellFill.createSolidFill('#7EB1C1'));
+                //sheet.rows(3).cells(i).cellFormat().font().colorInfo(new $.ig.excel.WorkbookColorInfo('#6699ff'));
+                sheet.rows(18).cells(i).cellFormat().alignment($.ig.excel.HorizontalCellAlignment.center);
+                sheet.rows(18).cells(i).cellFormat().leftBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+                sheet.rows(18).cells(i).cellFormat().rightBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+                sheet.rows(18).cells(i).cellFormat().topBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+                sheet.rows(18).cells(i).cellFormat().bottomBorderStyle($.ig.excel.CellBorderLineStyle.thin);
+                //sheet.rows(3).cells(i).applyFormula('=SUM(D2:D3)');
+                //sheet.rows(3).cells(i).applyFormula('=SUM(' + sheet.rows(1).cells(i) + ':' + sheet.rows(2).cells(i) + ')');
+                switch (i) {
+                  case 0:
+                    sheet.rows(18).cells(i).value('Total');
+                    break;
+                  case 3:
+                  case 4:
+                  case 5:
+                  case 6:
+                  case 9:
+                  case 10:
+                  case 11:
+                  case 12:
+                  case 13:
+                  case 17:
+                    sheet.rows(18).cells(i).applyFormula('=SUM(' + sheet.rows(16).cells(i) + ':' + sheet.rows(17).cells(i) + ')');
+                    break;
+                  case 7:
+                  case 8:
+                    sheet.rows(18).cells(i).applyFormula('=MAX(' + sheet.rows(16).cells(i) + ':' + sheet.rows(17).cells(i) + ')');
+                    break;
+                }
+              }                        
+            }
+
+            // Save the workbook
+            saveWorkbook(workbook, "Formatting.xlsx");
+        }
+
+        function saveWorkbook(workbook, name) {
+            workbook.save({ type: 'blob' }, function (data) {
+                saveAs(data, name);
+            }, function (error) {
+                alert('Export Error: : ' + error);
+            });
+        }
+
+    </script>
+</body>
+</html>
