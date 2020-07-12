@@ -15,7 +15,7 @@ conn = psycopg2.connect(host=dbhost, dbname=dbname, user=user, password=password
 cursor = conn.cursor()
 cursor.execute("DELETE FROM XXXXXX_tb;")
 
-with open(r"/home/takeshi/test/Master/Master.csv") as f:
+with open(r"/home/takeshi/Master.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         
