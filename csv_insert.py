@@ -13,7 +13,7 @@ password = config['BASE']['password']
 
 conn = psycopg2.connect(host=dbhost, dbname=dbname, user=user, password=password, port=5432)
 cursor = conn.cursor()
-cursor.execute("DELETE FROM XXXXXX_tb;")
+cursor.execute("DELETE FROM master_tb;")
 
 with open(r"/home/takeshi/Master.csv") as f:
     reader = csv.reader(f)
