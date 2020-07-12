@@ -1,11 +1,21 @@
 import os,csv
 import psycopg2
+import configparser
 
-conn = psycopg2.connect(host='XXXXXX', dbname='XXXXXX', user='postgres', password='XXXXXX', port=5432)
+config = configparser.ConfigParser()
+config.read(r'/home/takeshi/test/ini')
+
+host = config['BASE']['host']
+dbhost = config['BASE']['dbhost']
+dbname = config['BASE']['dbname']
+user = config['BASE']['user']
+password = config['BASE']['password']
+
+conn = psycopg2.connect(host=dbhost, dbname=dbname, user=user, password=password, port=5432)
 cursor = conn.cursor()
 cursor.execute("DELETE FROM XXXXXX_tb;")
 
-with open(r"/home/XXXXXX/Master.csv") as f:
+with open(r"/home/takeshi/test/Master/Master.csv") as f:
     reader = csv.reader(f)
     for row in reader:
         
