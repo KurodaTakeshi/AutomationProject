@@ -3,7 +3,7 @@ import psycopg2
 import configparser
 
 config = configparser.ConfigParser()
-config.read(r'/home/takeshi/test/ini')
+config.read(r'/home/takeshi/test/ini/config.ini')
 
 host = config['BASE']['host']
 dbhost = config['BASE']['dbhost']
