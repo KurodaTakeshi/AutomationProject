@@ -7,8 +7,8 @@ import sys
 from redis import Redis, RedisError
 import socket
 
- # Connect to Redis
- redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
+# Connect to Redis
+redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
